@@ -57,7 +57,7 @@ const createImageSlideCallback = (data) => {
   })
 }
 
-const imageSlider = new Slider(imageSliderContainer, images, createImageSlideCallback, 0, true);
+const imageSlider = new Slider(imageSliderContainer, images, createImageSlideCallback, {autoScroll: true});
 
 //----------------------------------
 const reviewsSliderContainer = document.querySelector(".reviews-container")
@@ -92,5 +92,35 @@ const createReviewCard = (data) => {
       ),)
   )
 }
-
-const reviewsSlider = new Slider(reviewsSliderContainer, reviewSegments, createReviewSlideCallback, 0, false);
+const createReviewControls = () => {
+  const prevBtn = createElement(
+    "button",
+    {
+      classNames: ["control-btn", "prev-btn"],
+      handlers: {click: this.prevButtonHandler},
+    },
+    "❮"
+  );
+  const nextBtn = createElement(
+    "button",
+    {
+      classNames: ["control-btn", "next-btn"],
+      handlers: {click: this.nextButtonHandler},
+    },
+    "❯"
+  )
+  const container = createElement(
+    "div",
+    {classNames: ["review-controls"]},
+    prevBtn,
+    nextBtn
+  );
+  return {prevBtn, nextBtn, container}
+}
+{
+  currentIndex = 0, autoScroll = false, customControls = null
+}
+const reviewsSlider = new Slider(reviewsSliderContainer, reviewSegments, createReviewSlideCallback, {
+  autoScroll: false,
+  customControls: createReviewControls()
+});

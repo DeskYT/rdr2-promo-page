@@ -1,8 +1,9 @@
 class Slider {
-  constructor(sliderContainer, slideData, createElementCallback, currentIndex = 0, autoScroll = false, customControls = null) {
+  constructor(sliderContainer, slideData, createElementCallback, options = {}) {
     if (!Array.isArray(slideData) || !sliderContainer instanceof HTMLElement) {
       throw new TypeError();
     }
+    const {currentIndex = 0, autoScroll = false, customControls = null} = options;
     this._slideData = slideData;
     this._createElementCallback = createElementCallback;
     this.currentIndex = currentIndex;
@@ -11,6 +12,7 @@ class Slider {
     this._buttonsEnabled = true;
     this._autoScrollInterval = null;
     this._isFocused = false;
+    this._customControls = customControls;
     this._initSlider();
   }
 
@@ -69,6 +71,11 @@ class Slider {
   }
 
   _createControls() {
+    if(this._customControls){
+      this._customControls.prevBtn.addEventListener("click", this.prevButtonHandler)
+      this._customControls.nextBtn.addEventListener("click", this.nextButtonHandler)
+      return this._customControls.container;
+    }
     return createElement(
       "div",
       {classNames: ["controls"]},
