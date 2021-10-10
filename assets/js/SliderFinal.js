@@ -9,6 +9,7 @@ class Slider {
     this._autoScroll = autoScroll;
     this._buttonsEnabled = true;
     this._autoScrollInterval = null;
+    this._isFocused = false;
     this._initSlider();
   }
 
@@ -39,28 +40,34 @@ class Slider {
     this._initListeners();
   }
 
-
   _initAutoScroll() {
-    if (this._autoScroll) {
+    if (this._autoScroll && !this._isFocused) {
       clearInterval(this._autoScrollInterval);
       this._autoScrollInterval = setInterval(() => {
-        this.animateSlider()
+        this.switchSlide()
       }, 4000);
     }
   }
 
   _initListeners() {
+    // For devices with mouse
     this._sliderContainer.addEventListener("mouseover", this._mouseOverHandler)
     this._sliderContainer.addEventListener("mouseout", this._mouseOutHandler)
+
+    // For devices with touch screens
+    this._sliderContainer.addEventListener("focus", this._mouseOverHandler)
+    this._sliderContainer.addEventListener("blur", this._mouseOutHandler)
   }
 
-  _mouseOverHandler = (e) => {
+  _mouseOverHandler = () => {
     this._controls.style.opacity = "1";
+    this._isFocused = true;
     clearInterval(this._autoScrollInterval);
   }
 
-  _mouseOutHandler = (e) => {
+  _mouseOutHandler = () => {
     this._controls.style.opacity = "0";
+    this._isFocused = false;
     this._initAutoScroll()
   }
 
@@ -89,14 +96,15 @@ class Slider {
 
   prevButtonHandler = (event) => {
     if (!this._buttonsEnabled) return;
-    this.animateSlider(this.nextIndex, true);
-  };
-  nextButtonHandler = (event) => {
-    if (!this._buttonsEnabled) return;
-    this.animateSlider();
+    this.switchSlide(this.nextIndex, true);
   };
 
-  animateSlider(nextIndex = this.nextIndex, prev = null) {
+  nextButtonHandler = (event) => {
+    if (!this._buttonsEnabled) return;
+    this.switchSlide();
+  };
+
+  switchSlide(nextIndex = this.nextIndex, prev = null) {
     clearInterval(this._autoScrollInterval);
     this._prevImageElem.style.animationName = "";
     this.currentIndex = prev ? this.prevIndex : this.nextIndex;
@@ -151,15 +159,5 @@ class Slider {
       this.images[this.currentIndex],
       this.images[this.nextIndex],
     ];
-  }
-
-  next() {
-    this.currentIndex = this.nextIndex;
-    return this.activeSlides;
-  }
-
-  prev() {
-    this.currentIndex = this.prevIndex;
-    return this.activeSlides;
   }
 }
