@@ -63,12 +63,12 @@ const imageSlider = new Slider(imageSliderContainer, images, createImageSlideCal
 const reviewsSliderContainer = document.querySelector(".reviews-container")
 
 const createReviewSlideCallback = (data) => {
-  return createElement("div", {classNames: ["d-flex", "justify-content-evenly", "review-segment", "slide"]}, ...data.map(segment => createReviewCard(segment)))
+  return createElement("div", {classNames: ["review-segment", "slide"]}, ...data.map(segment => createReviewCard(segment)))
 }
 
 const createReviewCard = (data) => {
   return createElement("article", {
-      classNames: ["review-card", "col-3"],
+      classNames: ["review-card"],
     },
     createElement("header",
       {classNames: ["review-card-header"]},
@@ -122,5 +122,6 @@ const createReviewControls = () => {
 }
 const reviewsSlider = new Slider(reviewsSliderContainer, reviewSegments, createReviewSlideCallback, {
   autoScroll: false,
-  customControls: createReviewControls()
+  customControls: createReviewControls(),
+  showControlsAlways: true,
 });

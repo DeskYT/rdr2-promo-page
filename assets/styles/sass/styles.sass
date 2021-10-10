@@ -163,10 +163,12 @@ body
 
   &-column
     padding: 17px 10px
+
     & > h3
       color: var(--secondary-font-color)
       font-weight: bold
       font-size: 1.2rem
+
     @media screen and (max-width: 767px)
       font-size: 1.1rem
       & > h3
@@ -183,29 +185,37 @@ body
 .reviews-container
   margin-top: 10px
   position: relative
+
 .review-card
+  flex-basis: 30%
   background-color: var(--bg-secondary-color)
   padding: 20px
   border-radius: 10px
   box-shadow: 2px 2px 8px 0 var(--block-shadow-color)
+
   &-header
     & > p
       color: var(--secondary-font-color)
 
 .review-segment
+  display: flex
+  justify-content: space-between
   width: 100%
+  @media screen and (max-width: 768px)
+    flex-direction: column
+    & > .review-card + .review-card
+      margin-top: 20px
 
 .review-controls
   position: absolute
   z-index: 1
-  left: -3%
-  right: -3%
+  left: calc(-1 * (6% + 3rem))
+  right: calc(-1 * (6% + 3rem))
   top: 0
   bottom: 0
   display: flex
   align-items: stretch
   justify-content: space-between
-  opacity: 0
   transition: opacity 0.3s
 
 .footer

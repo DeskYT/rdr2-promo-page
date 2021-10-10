@@ -3,7 +3,7 @@ class Slider {
     if (!Array.isArray(slideData) || !sliderContainer instanceof HTMLElement) {
       throw new TypeError();
     }
-    const {currentIndex = 0, autoScroll = false, customControls = null} = options;
+    const {currentIndex = 0, autoScroll = false, customControls = null, showControlsAlways = false} = options;
     this._slideData = slideData;
     this._createElementCallback = createElementCallback;
     this.currentIndex = currentIndex;
@@ -13,6 +13,7 @@ class Slider {
     this._autoScrollInterval = null;
     this._isFocused = false;
     this._customControls = customControls;
+    this._showControlsAlways = showControlsAlways
     this._initSlider();
   }
 
@@ -25,6 +26,7 @@ class Slider {
     this._nextSlideElem = this._createElementCallback(nextSlideData);
     this._nextSlideElem.classList.add('next-slide')
     this._controls = this._createControls()
+    if(!this._showControlsAlways) this._controls.style.opacity = "0";
     this._sliderContainer.append(
       createElement(
         "div",
@@ -59,13 +61,13 @@ class Slider {
   }
 
   _mouseOverHandler = () => {
-    this._controls.style.opacity = "1";
+    if(!this._showControlsAlways) this._controls.style.opacity = "1";
     this._isFocused = true;
     clearInterval(this._autoScrollInterval);
   }
 
   _mouseOutHandler = () => {
-    this._controls.style.opacity = "0";
+    if(!this._showControlsAlways) this._controls.style.opacity = "0";
     this._isFocused = false;
     this._initAutoScroll()
   }
