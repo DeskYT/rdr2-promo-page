@@ -15,25 +15,15 @@ const images = [
 
 const slidesContainer = document.querySelector(".slider-container");
 
-const slider = new Slider(slidesContainer, images, 0, true);
-const [prevButton, nextButton] = document.querySelectorAll(
-  ".slider-container > button"
-);
-
-/*
-updateView(slider.currentSlide);
-
-const createButtonHandler = (action = "next") => () => {
-  const newImages = slider[action]();
-  updateView(newImages);
-};
-
-prevButton.addEventListener("click", createButtonHandler("prev"));
-nextButton.addEventListener("click", createButtonHandler("next"));
 
 
-function updateView([prevSlideLink, curSlideLink, nextSlideLink]) {
-  prevSlideImage.setAttribute("src", prevSlideLink);
-  cur
+const createElementCallback = (data) => {
+  return createElement("img", {
+    classNames: ["slide"],
+    attributes: {
+      src: data
+    }
+  })
 }
-*/
+
+const slider = new Slider(slidesContainer, images, createElementCallback, 0, true);
