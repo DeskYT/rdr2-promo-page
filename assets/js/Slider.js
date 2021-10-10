@@ -1,9 +1,10 @@
 class Slider {
-  constructor(sliderContainer, images, currentIndex = 0, autoScroll = false) {
+  constructor(sliderContainer, slideData, createElementCallback, currentIndex = 0, autoScroll = false) {
     if (!Array.isArray(images) || !sliderContainer instanceof HTMLElement) {
       throw new TypeError();
     }
-    this._images = images;
+    this._slideData = slideData;
+    this._createElementCallback = createElementCallback;
     this.currentIndex = currentIndex;
     this._sliderContainer = sliderContainer;
     this._autoScroll = autoScroll;
@@ -14,28 +15,24 @@ class Slider {
   }
 
   _initSlider() {
-    this._prevImageElem = createElement("img", {
-      classNames: ["slide", "prev-slide"],
-    });
-    this._curImageElem = createElement("img", {
-      classNames: ["slide", "cur-slide"],
-    });
-    this._nextImageElem = createElement("img", {
-      classNames: ["slide", "next-slide"],
-    });
+    const [prevSlideData, curSlideData, nextSlideData] = this.activeSlides;
+    this._prevSlideElem = this._createElementCallback(prevSlideData);
+    this._prevSlideElem.classList.add('prev-slide')
+    this._curSlideElem = this._createElementCallback(curSlideData);
+    this._curSlideElem.classList.add('cur-slide')
+    this._nextSlideElem = this._createElementCallback(nextSlideData);
+    this._nextSlideElem.classList.add('next-slide')
     this._controls = this._createControls()
     this._sliderContainer.append(
       createElement(
         "div",
         {classNames: ["slides"]},
-        this._prevImageElem,
-        this._curImageElem,
-        this._nextImageElem
+        this._prevSlideElem,
+        this._curSlideElem,
+        this._nextSlideElem
       ),
       this._controls
     );
-    [this._prevImageElem.src, this._curImageElem.src, this._nextImageElem.src] =
-      this.activeSlides;
     this._initAutoScroll();
     this._initListeners();
   }
@@ -106,28 +103,36 @@ class Slider {
 
   switchSlide(nextIndex = this.nextIndex, prev = null) {
     clearInterval(this._autoScrollInterval);
-    this._prevImageElem.style.animationName = "";
+    this._prevSlideElem.style.animationName = "";
     this.currentIndex = prev ? this.prevIndex : this.nextIndex;
     this._buttonsEnabled = false;
 
     const classname = prev ? "rightPrev" : "leftNext";
-    this._prevImageElem.classList.add(classname);
+    this._prevSlideElem.classList.add(classname);
     setTimeout(() => {
-      const [prevImg, curImg, nextImg] = this.activeSlides;
-      this._curImageElem.src = curImg;
+      const [prevSlideData, curSlideData, nextSlideData] = this.activeSlides;
+      const newCurElem = this._createElementCallback(curSlideData);
+      newCurElem.classList.add('cur-slide')
+      const newPrevElem = this._createElementCallback(prevSlideData);
+      newPrevElem.classList.add('prev-slide')
+      const newNextElem = this._createElementCallback(nextSlideData);
+      newNextElem.classList.add('next-slide')
+      this._curSlideElem.parentNode.replaceChild(newCurElem, this._curSlideElem);
+      this._curSlideElem = newCurElem;
       setTimeout(() => {
-        this._prevImageElem.src = prevImg;
-        this._nextImageElem.src = nextImg;
-
-        this._prevImageElem.classList.remove(classname);
+        this._prevSlideElem.parentNode.replaceChild(newPrevElem, this._prevSlideElem);
+        this._prevSlideElem = newPrevElem;
+        this._nextSlideElem.parentNode.replaceChild(newNextElem, this._nextSlideElem);
+        this._nextSlideElem = newNextElem
+        //this._prevSlideElem.classList.remove(classname);
         this._buttonsEnabled = true;
         this._initAutoScroll();
       }, 100);
     }, 700);
   }
 
-  get images() {
-    return this._images ;
+  get slideData() {
+    return this._slideData;
   }
 
   get currentIndex() {
@@ -138,7 +143,7 @@ class Slider {
     if (typeof v !== "number") {
       throw new TypeError();
     }
-    if (v >= 0 && v < this._images .length) {
+    if (v >= 0 && v < this._slideData.length) {
       this._currentIndex = v;
     } else {
       this._currentIndex = 0;
@@ -146,18 +151,18 @@ class Slider {
   }
 
   get nextIndex() {
-    return (this.currentIndex + 1) % this._images .length;
+    return (this.currentIndex + 1) % this._slideData.length;
   }
 
   get prevIndex() {
-    return (this.currentIndex - 1 + this._images .length) % this._images .length;
+    return (this.currentIndex - 1 + this._slideData.length) % this._slideData.length;
   }
 
   get activeSlides() {
     return [
-      this.images[this.prevIndex],
-      this.images[this.currentIndex],
-      this.images[this.nextIndex],
+      this._slideData[this.prevIndex],
+      this._slideData[this.currentIndex],
+      this._slideData[this.nextIndex],
     ];
   }
 }

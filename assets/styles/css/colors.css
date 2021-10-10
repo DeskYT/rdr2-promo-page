@@ -12,6 +12,7 @@
   --btn-bg-color: rgb(227, 50, 45);
   --btn-hover-bg-color: rgb(196, 65, 62);
   --btn-font-color: #FFF;
+  --block-shadow-color: rgba(227, 227, 227, 0.2);
 }
 
 .light {
@@ -26,6 +27,7 @@
   --btn-bg-color: rgb(227, 50, 45);
   --btn-hover-bg-color: rgb(227, 50, 45);
   --btn-font-color: #FFF;
+  --block-shadow-color: rgba(227, 227, 227, 0.2);
 }
 
 /*# sourceMappingURL=colors.css.map */

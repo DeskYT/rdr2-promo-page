@@ -14,6 +14,7 @@
   --btn-bg-color: rgb(227, 50, 45);
   --btn-hover-bg-color: rgb(196, 65, 62);
   --btn-font-color: #FFF;
+  --block-shadow-color: rgba(227, 227, 227, 0.2);
 }
 
 .light {
@@ -28,6 +29,7 @@
   --btn-bg-color: rgb(227, 50, 45);
   --btn-hover-bg-color: rgb(227, 50, 45);
   --btn-font-color: #FFF;
+  --block-shadow-color: rgba(227, 227, 227, 0.2);
 }
 
 .rm-outer-wrapper {
@@ -346,6 +348,24 @@ h2.short-info-headline {
 .system-requirements-property > h4 {
   color: var(--secondary-font-color);
   font-weight: bold;
+}
+
+.reviews-container {
+  margin-top: 10px;
+}
+
+.review-card {
+  background-color: var(--bg-secondary-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px 0 var(--block-shadow-color);
+}
+.review-card-header > p {
+  color: var(--secondary-font-color);
+}
+
+.footer {
+  margin-top: 30px;
 }
 
 /*# sourceMappingURL=styles.css.map */
