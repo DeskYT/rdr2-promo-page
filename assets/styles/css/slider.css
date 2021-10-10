@@ -1,0 +1,117 @@
+.slider-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.slide {
+  width: 100%;
+  min-width: 100%;
+  -webkit-animation: 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 0s left;
+          animation: 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 0s left;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.slides {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+}
+
+.prev-slide {
+  margin-left: -100%;
+}
+
+.controls {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.control-btn {
+  padding: 0 3%;
+  color: var(--global-font-color);
+  font-size: 3rem;
+  font-weight: bold;
+  background: rgba(var(--rm-bg-color-values), 0.05);
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.control-btn:hover {
+  background: rgba(var(--rm-bg-color-values), 0.3);
+}
+
+/*.next-btn
+ right: 0
+ border-radius: 0.8rem 0 0 0.8rem */
+/*.prev-btn
+ left: 0
+ border-radius: 0 0.8rem 0.8rem 0 */
+.leftNext {
+  -webkit-animation-name: leftNext;
+          animation-name: leftNext;
+}
+
+.rightPrev {
+  -webkit-animation-name: rightPrev;
+          animation-name: rightPrev;
+}
+
+@-webkit-keyframes rightPrev {
+  from {
+    margin-left: -100%;
+  }
+  to {
+    margin-left: 0;
+  }
+}
+
+@keyframes rightPrev {
+  from {
+    margin-left: -100%;
+  }
+  to {
+    margin-left: 0;
+  }
+}
+
+@-webkit-keyframes leftNext {
+  from {
+    margin-left: -100%;
+  }
+  to {
+    margin-left: -200%;
+  }
+}
+
+@keyframes leftNext {
+  from {
+    margin-left: -100%;
+  }
+  to {
+    margin-left: -200%;
+  }
+}
+
+.slider-outer {
+  border-radius: 15px;
+  overflow: hidden;
+}

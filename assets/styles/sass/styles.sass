@@ -1,0 +1,72 @@
+@import './colors.sass'
+@import './fonts.sass'
+@import './responsive-media.sass'
+@import './slider.sass'
+
+*, *::after, *::before
+  box-sizing: border-box
+
+body
+  font-family: 'Roboto', sans-serif
+  background-color: var(--bg-color)
+  color: var(--global-font-color)
+
+.main-header
+  width: 100%
+  background-color: var(--bg-secondary-color)
+  padding: 10px 0
+  position: fixed
+  top: 0
+  z-index: 99999
+
+.header
+  &-logo-container
+    display: block
+    user-select: none
+
+  &-logo
+    height: 70px
+
+.navlist
+  &-item
+
+  &-link
+    color: var(--global-font-color)
+    text-decoration: none
+    font-size: 25px
+
+.main-container
+  margin-top: 200px
+
+.review-video
+  &-outer
+    overflow: hidden
+    border-radius: 10px
+  &-inner
+    transform: scale(1.255)
+
+.button
+  padding: 10px 50px
+  border: none
+  border-radius: 5px
+  color: var(--btn-font-color)
+  background-color: var(--btn-bg-color)
+  font-weight: 500
+  font-size: 16px
+  letter-spacing: 1px
+  text-align: center
+  text-transform: capitalize
+  user-select: none
+  cursor: pointer
+
+.short-info
+  margin-top: 20px
+  &-headline
+    color: var(--general-font-color)
+    font-size: 1.5rem
+    line-height: 2.3
+
+  &-description
+    color: var(--secondary-font-color)
+    letter-spacing: 0.3px
+    line-height: 1.5
