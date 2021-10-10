@@ -5,6 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="./assets/styles/css/reset.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <link rel="stylesheet" href="./assets/styles/css/bootstrap-grid.min.css"/>
   <link rel="stylesheet" href="./assets/styles/css/styles.min.css"/>
   <script defer src="./assets/js/utils.js"></script>
@@ -14,7 +17,7 @@
 </head>
 <body class="dark">
 <header class="main-header">
-  <nav class="header-nav container-xxl col-10 d-flex align-items-center">
+  <nav class="header-nav container-xxl col-10 d-flex align-items-center justify-content-between">
     <a href="#" class="header-logo-container col-2">
       <img
         src="./assets/images/logo.png"
@@ -22,11 +25,19 @@
         alt="Red Dead Redemption 2"
       />
     </a>
-    <ul class="navlist row">
+    <!--ul class="navlist row">
       <li class="navlist-item col-auto d-flex align-items-center">
         <a href="#" class="navlist-link">Test</a>
       </li>
-    </ul>
+    </ul-->
+    <div class="theme-switcher">
+      <input type="checkbox" class="theme-switcher-checkbox" id="theme-switcher-checkbox">
+      <label for="theme-switcher-checkbox" class="theme-switcher-label">
+        <i class="fas fa-moon"></i>
+        <i class='fas fa-sun'></i>
+        <div class='theme-switcher-ball'></div>
+      </label>
+    </div>
   </nav>
 </header>
 <main
@@ -162,7 +173,7 @@
         </div>
         <div class="system-requirements-property">
           <h4>Видеокарта</h4>
-          <p>Nvidia GeForce GTX 770 2 ГБ / AMD Radeon R9 280 3 ГБ</p>
+          <p>Nvidia GeForce GTX 770 2ГБ / AMD Radeon R9 280 3ГБ</p>
         </div>
         <div class="system-requirements-property">
           <h4>Место на диске</h4>
@@ -174,22 +185,22 @@
         </div>
       </article>
       <article class="system-requirements-column col-12 col-md-5">
-        <h3>Минимальные</h3>
+        <h3>Рекомендуется</h3>
         <div class="system-requirements-property">
           <h4>ОС</h4>
-          <p>Windows 7 с пакетом обновления 1 (6.1.7601)</p>
+          <p>Windows 10, обновление за апрель 2018 г. (версия 1803)</p>
         </div>
         <div class="system-requirements-property">
           <h4>Процессор</h4>
-          <p>Intel® Core™ i5-2500K / AMD FX-6300</p>
+          <p>Intel® Core™ i7-4770K / AMD Ryzen 5 1500x</p>
         </div>
         <div class="system-requirements-property">
           <h4>Память</h4>
-          <p>8 ГБ</p>
+          <p>12 ГБ</p>
         </div>
         <div class="system-requirements-property">
           <h4>Видеокарта</h4>
-          <p>Nvidia GeForce GTX 770 2 ГБ / AMD Radeon R9 280 3 ГБ</p>
+          <p>Nvidia GeForce GTX 1060 6ГБ / AMD Radeon RX 480 4ГБ</p>
         </div>
         <div class="system-requirements-property">
           <h4>Место на диске</h4>
@@ -208,7 +219,35 @@
     </div>
   </section>
 
+  <section class="col-11 col-md-12 col-lg-11 d-flex flex-column align-items-center info-section">
+    <h2 class="section-title">Оставить отзыв</h2>
+    <form action="#" class="make-review-form">
+      <input class="form-text-input" type="text" placeholder="Имя" required>
+      <input class="form-text-input" type="email" placeholder="Email" required>
+      <textarea class="form-text-input" rows="10" placeholder="Отзыв" required></textarea>
+      <button type="submit" class="button form-submit-button">Отправить</button>
+    </form>
+  </section>
+
+
 </main>
-<footer class="footer"></footer>
+<footer class="footer">
+  <div>Made by Nikolay Drobiniak, KNT121-SP, 2021</div>
+  <div class="social-media">
+    <a href="https://www.linkedin.com/in/nikolay-drobiniak-6a744110b/">
+      <i class="fa-brands fa-linkedin"></i>
+    </a>
+    <a href="https://t.me/artymatix">
+      <i class="fa-brands fa-telegram"></i>
+    </a>
+    <a href="https://instagram.com/npocmo.niko/">
+      <i class="fa-brands fa-instagram-square"></i>
+    </a>
+    <a href="mailto:ndrobiniak@gmail.com">
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+
+  </div>
+</footer>
 </body>
 </html>

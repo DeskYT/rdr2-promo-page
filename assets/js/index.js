@@ -14,19 +14,16 @@ const images = [
 
 const reviews = [
   {
-    portal: "Game Informer",
     author: "Matt Bertz",
     mark: "10/10",
     description: "Rockstar has once again created a game that redefines the open-world experience. Red Dead Redemption II is a triumph that every gamer should experience for themselves"
   },
   {
-    portal: "GamesRadar+",
     author: "David Meikleham",
     mark: "10/10",
     description: "One of the top three open-worlds of all time, and the best game Rockstar has ever made. An all-time Old West masterpiece."
   },
   {
-    portal: "IGN",
     author: "Luke Reilly",
     mark: "10/10",
     description: "Red Dead Redemption 2 is a game of rare quality; a meticulously polished open world ode to the outlaw era."
@@ -72,13 +69,17 @@ const createReviewCard = (data) => {
     },
     createElement("header",
       {classNames: ["review-card-header"]},
-      createElement(
+      /*createElement(
         "h3", {},
         data.portal
-      ),
-      createElement(
+      ),*/
+      /*createElement(
         "p", {},
         `Автор: ${data.author}`
+      )*/
+      createElement(
+        "p", {},
+        data.author
       )
     ),
     createElement("div", {classNames: ["review-card-body"]},
@@ -125,3 +126,24 @@ const reviewsSlider = new Slider(reviewsSliderContainer, reviewSegments, createR
   customControls: createReviewControls(),
   showControlsAlways: true,
 });
+
+const setTheme = (isDarkMode) => {
+  localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+  document.body.classList.remove('dark', 'light');
+  document.body.classList.add(isDarkMode ? 'dark' : 'light');
+}
+
+const initThemeChanger = () => {
+  const themeSwitcherCheckbox = document.getElementById('theme-switcher-checkbox');
+  if (localStorage.getItem('isDarkMode') === null) {
+    setTheme(true);
+  }
+  const isDarkMode = JSON.parse(localStorage.getItem('isDarkMode'));
+  themeSwitcherCheckbox.checked = isDarkMode;
+  document.body.classList.add(isDarkMode ? 'dark' : 'light');
+  themeSwitcherCheckbox.addEventListener("change", (e) => {
+    setTheme(e.currentTarget.checked);
+  })
+}
+
+initThemeChanger()
