@@ -6,7 +6,9 @@ class Slider {
     this._images = images;
     this.currentIndex = currentIndex;
     this._sliderContainer = sliderContainer;
+    this._autoScroll = autoScroll;
     this._buttonsEnabled = true;
+    this._autoScrollInterval = null;
     this._initSlider();
   }
 
@@ -20,28 +22,57 @@ class Slider {
     this._nextImageElem = createElement("img", {
       classNames: ["slide", "next-slide"],
     });
+    this._controls = this._createControls()
     this._sliderContainer.append(
       createElement(
         "div",
-        { classNames: ["slides"] },
+        {classNames: ["slides"]},
         this._prevImageElem,
         this._curImageElem,
         this._nextImageElem
       ),
-      this._createControls()
+      this._controls
     );
     [this._prevImageElem.src, this._curImageElem.src, this._nextImageElem.src] =
       this.activeSlides;
+    this._initAutoScroll();
+    this._initListeners();
   }
+
+
+  _initAutoScroll() {
+    if (this._autoScroll) {
+      clearInterval(this._autoScrollInterval);
+      this._autoScrollInterval = setInterval(() => {
+        this.animateSlider()
+      }, 4000);
+    }
+  }
+
+  _initListeners() {
+    this._sliderContainer.addEventListener("mouseover", this._mouseOverHandler)
+    this._sliderContainer.addEventListener("mouseout", this._mouseOutHandler)
+  }
+
+  _mouseOverHandler = (e) => {
+    this._controls.style.opacity = "1";
+    clearInterval(this._autoScrollInterval);
+  }
+
+  _mouseOutHandler = (e) => {
+    this._controls.style.opacity = "0";
+    this._initAutoScroll()
+  }
+
   _createControls() {
     return createElement(
       "div",
-      { classNames: ["controls"] },
+      {classNames: ["controls"]},
       createElement(
         "button",
         {
           classNames: ["control-btn", "prev-btn"],
-          handlers: { click: this.prevButtonHandler },
+          handlers: {click: this.prevButtonHandler},
         },
         "❮"
       ),
@@ -49,12 +80,13 @@ class Slider {
         "button",
         {
           classNames: ["control-btn", "next-btn"],
-          handlers: { click: this.nextButtonHandler },
+          handlers: {click: this.nextButtonHandler},
         },
         "❯"
       )
     );
   }
+
   prevButtonHandler = (event) => {
     if (!this._buttonsEnabled) return;
     this.animateSlider(this.nextIndex, true);
@@ -65,6 +97,7 @@ class Slider {
   };
 
   animateSlider(nextIndex = this.nextIndex, prev = null) {
+    clearInterval(this._autoScrollInterval);
     this._prevImageElem.style.animationName = "";
     this.currentIndex = prev ? this.prevIndex : this.nextIndex;
     this._buttonsEnabled = false;
@@ -80,6 +113,7 @@ class Slider {
 
         this._prevImageElem.classList.remove(classname);
         this._buttonsEnabled = true;
+        this._initAutoScroll();
       }, 100);
     }, 700);
   }
@@ -108,9 +142,6 @@ class Slider {
   }
 
   get prevIndex() {
-    console.log(
-      (this.currentIndex - 1 + this._images.length) % this._images.length
-    );
     return (this.currentIndex - 1 + this._images.length) % this._images.length;
   }
 

@@ -4,19 +4,15 @@
   background-color: var(--rm-bg-color);
   padding: 0;
 }
-
 .rm-inner-wrapper, .rm-inner-wrapper-16-9, .rm-inner-wrapper-21-9 {
   position: relative;
 }
-
 .rm-inner-wrapper, .rm-inner-wrapper-16-9 {
-  padding-top: calc(100% * 9 / 16);
+  padding-top: 56.25%;
 }
-
 .rm-inner-wrapper-21-9 {
-  padding-top: calc(100% * 9 / 21);
+  padding-top: 42.8571428571%;
 }
-
 .rm-media {
   position: absolute;
   width: 100%;
@@ -24,6 +20,7 @@
   top: 0;
   left: 0;
   right: 0;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
+
+/*# sourceMappingURL=responsive-media.css.map */

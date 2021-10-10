@@ -1,23 +1,16 @@
 .slider-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .slide {
   width: 100%;
   min-width: 100%;
-  -webkit-animation: 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 0s left;
-          animation: 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 0s left;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -o-object-fit: cover;
-     object-fit: cover;
+  animation: 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 0s left;
+  animation-fill-mode: forwards;
+  object-fit: cover;
 }
 
 .slides {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   overflow: hidden;
 }
@@ -33,15 +26,11 @@
   right: 0;
   top: 0;
   bottom: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: stretch;
+  justify-content: space-between;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .control-btn {
@@ -53,65 +42,47 @@
   border: none;
   outline: none;
   cursor: pointer;
+  transition: background 0.2s;
 }
-
 .control-btn:hover {
   background: rgba(var(--rm-bg-color-values), 0.3);
 }
 
 /*.next-btn
- right: 0
- border-radius: 0.8rem 0 0 0.8rem */
+ * right: 0
+ * border-radius: 0.8rem 0 0 0.8rem */
 /*.prev-btn
- left: 0
- border-radius: 0 0.8rem 0.8rem 0 */
+ * left: 0
+ * border-radius: 0 0.8rem 0.8rem 0 */
 .leftNext {
-  -webkit-animation-name: leftNext;
-          animation-name: leftNext;
+  animation-name: leftNext;
 }
 
 .rightPrev {
-  -webkit-animation-name: rightPrev;
-          animation-name: rightPrev;
-}
-
-@-webkit-keyframes rightPrev {
-  from {
-    margin-left: -100%;
-  }
-  to {
-    margin-left: 0;
-  }
+  animation-name: rightPrev;
 }
 
 @keyframes rightPrev {
-  from {
+  0% {
     margin-left: -100%;
   }
-  to {
+  100% {
     margin-left: 0;
   }
 }
-
-@-webkit-keyframes leftNext {
-  from {
-    margin-left: -100%;
-  }
-  to {
-    margin-left: -200%;
-  }
-}
-
 @keyframes leftNext {
-  from {
+  0% {
     margin-left: -100%;
   }
-  to {
+  100% {
     margin-left: -200%;
   }
 }
-
+/*from { margin-left:- 100 %;} */
+/*to { margin-left:- 200 %;} */
 .slider-outer {
   border-radius: 15px;
   overflow: hidden;
 }
+
+/*# sourceMappingURL=slider.css.map */

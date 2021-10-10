@@ -11,11 +11,12 @@ html
   font-size: 16px
   @media screen and (max-width: 992px)
     font-size: 14px
-  @media screen and (max-width: 768px)
+  @media screen and (max-width: 767px)
     font-size: 12px
 
 body
   font-family: 'Roboto', sans-serif
+  line-height: 1.5
   background-color: var(--bg-color)
   color: var(--global-font-color)
 
@@ -50,6 +51,7 @@ body
   &-outer
     overflow: hidden
     border-radius: 10px
+
   &-inner
     transform: scale(1.255)
 
@@ -69,8 +71,9 @@ body
 
 .short-info
   margin-top: 20px
+
   &-headline
-    color: var(--general-font-color)
+    color: var(--global-font-color)
     font-size: 1.5rem
     line-height: 2.3
     @at-root
@@ -91,24 +94,25 @@ body
   justify-content: space-between
   border-bottom: 2px solid var(--delimiter-border-color)
   padding: 8px 10px
-  /*font-size: 0.7rem
-
-  /*@media screen and (min-width: 992px)
-   font-size: 1rem
 
   & > * + *
-    margin-left: 45px
+    margin-left: 30px
+
   &-title
     font-weight: bold
     color: var(--secondary-font-color)
+
   &-description
+
   &-icon-container
     display: flex
     justify-content: space-evenly
+
   &-icon
     height: 20px
     object-fit: contain
     user-select: none
+
     & + &
       padding-left: 12px
 
@@ -117,12 +121,15 @@ body
 
 .main-title
   font-size: 3rem
-  line-height: 1.5
   font-weight: 400
-  /*@media screen and (max-width: 767px)
-   font-size: 2rem
-  /*@media screen and (max-width: 397px)
-   font-size: 1.4rem
+
+.info-section
+  margin-top: 20px
+
+.section-title
+  font-size: 2.4rem
+  font-weight: 400
+  text-align: center
 
 .content-wrapper
   margin-top: 25px
@@ -134,7 +141,14 @@ body
     margin-top: 25px
 
 .poster-container
+  @media screen and (max-width: 767px)
+    display: none
+
   > img
     width: 100%
     object-fit: contain
     border-radius: 10px
+
+
+.get-now-button
+  margin-top: 25px
