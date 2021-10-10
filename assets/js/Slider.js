@@ -1,6 +1,6 @@
 class Slider {
-  constructor(sliderContainer, slideData, createElementCallback, currentIndex = 0, autoScroll = false) {
-    if (!Array.isArray(images) || !sliderContainer instanceof HTMLElement) {
+  constructor(sliderContainer, slideData, createElementCallback, currentIndex = 0, autoScroll = false, customControls = null) {
+    if (!Array.isArray(slideData) || !sliderContainer instanceof HTMLElement) {
       throw new TypeError();
     }
     this._slideData = slideData;

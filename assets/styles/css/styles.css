@@ -352,6 +352,7 @@ h2.short-info-headline {
 
 .reviews-container {
   margin-top: 10px;
+  position: relative;
 }
 
 .review-card {
@@ -362,6 +363,10 @@ h2.short-info-headline {
 }
 .review-card-header > p {
   color: var(--secondary-font-color);
+}
+
+.review-segment {
+  width: 100%;
 }
 
 .footer {
