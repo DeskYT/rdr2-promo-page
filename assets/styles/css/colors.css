@@ -1,6 +1,10 @@
 .dark {
   --global-font-color: #FFF;
+  /*--global-icons-color:  #d3d3d3 */
+  --global-icons-color: invert(97%) sepia(0%) saturate(1034%) hue-rotate(143deg) brightness(90%) contrast(88%);
   --secondary-font-color: #9C9C9C;
+  --secondary-lighter-font-color: #bdbdbd;
+  --delimiter-border-color: #686868;
   --bg-color: #1C1C1C;
   --bg-secondary-color: #2a2a2a;
   --rm-bg-color-values: 0, 0, 0;
@@ -11,6 +15,8 @@
 
 .light {
   --global-font-color: #000;
+  /*--global-icons-color:  #414141 */
+  --global-icons-color: invert(25%) sepia(0%) saturate(1417%) hue-rotate(216deg) brightness(96%) contrast(94%);
   --secondary-font-color: #9C9C9C;
   --bg-color: gray;
   --bg-secondary-color: #2a2a2a;

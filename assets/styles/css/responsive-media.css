@@ -1,7 +1,8 @@
 .rm-outer-wrapper {
   min-width: 25%;
-  margin: 0 auto;
+  /*margin: 0 auto */
   background-color: var(--rm-bg-color);
+  padding: 0;
 }
 
 .rm-inner-wrapper, .rm-inner-wrapper-16-9, .rm-inner-wrapper-21-9 {

@@ -5,6 +5,14 @@
 
 *, *::after, *::before
   box-sizing: border-box
+  scroll-behavior: smooth
+
+html
+  font-size: 16px
+  @media screen and (max-width: 992px)
+    font-size: 14px
+  @media screen and (max-width: 768px)
+    font-size: 12px
 
 body
   font-family: 'Roboto', sans-serif
@@ -25,7 +33,7 @@ body
     user-select: none
 
   &-logo
-    height: 70px
+    height: 50px
 
 .navlist
   &-item
@@ -36,7 +44,7 @@ body
     font-size: 25px
 
 .main-container
-  margin-top: 200px
+  margin-top: 120px
 
 .review-video
   &-outer
@@ -65,8 +73,68 @@ body
     color: var(--general-font-color)
     font-size: 1.5rem
     line-height: 2.3
+    @at-root
+      h2#{&}
+        font-size: 2rem
 
   &-description
     color: var(--secondary-font-color)
     letter-spacing: 0.3px
     line-height: 1.5
+
+.general-info-container
+  margin-top: 15px
+
+.info-row
+  width: 100%
+  display: flex
+  justify-content: space-between
+  border-bottom: 2px solid var(--delimiter-border-color)
+  padding: 8px 10px
+  /*font-size: 0.7rem
+
+  /*@media screen and (min-width: 992px)
+   font-size: 1rem
+
+  & > * + *
+    margin-left: 45px
+  &-title
+    font-weight: bold
+    color: var(--secondary-font-color)
+  &-description
+  &-icon-container
+    display: flex
+    justify-content: space-evenly
+  &-icon
+    height: 20px
+    object-fit: contain
+    user-select: none
+    & + &
+      padding-left: 12px
+
+.icon
+  filter: var(--global-icons-color)
+
+.main-title
+  font-size: 3rem
+  line-height: 1.5
+  font-weight: 400
+  /*@media screen and (max-width: 767px)
+   font-size: 2rem
+  /*@media screen and (max-width: 397px)
+   font-size: 1.4rem
+
+.content-wrapper
+  margin-top: 25px
+
+.base-info-column
+  position: relative
+  padding: 0
+  @media screen and (max-width: 767px)
+    margin-top: 25px
+
+.poster-container
+  > img
+    width: 100%
+    object-fit: contain
+    border-radius: 10px
