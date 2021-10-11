@@ -1,4 +1,18 @@
 class Slider {
+  /**
+   *
+   * @param sliderContainer {HTMLElement} - root element
+   * @param slideData {array} - Array with data for slides
+   * @param createElementCallback {function} - callback to create element using slide data
+   * @param options {Object} - Options object
+   * @param options.currentIndex {number} - Initial slide
+   * @param options.autoScroll: {boolean} - Auto switch slides
+   * @param options.customControls: {Object} -Custom control buttons
+   * @param options.customControls.prevBtn: {HTMLElement} - Button to switch to a prev slide
+   * @param options.customControls.nextBtn: {HTMLElement} - Button to switch to a next slide
+   * @param options.customControls.container: {HTMLElement} - Container, where prev, next buttons are located
+   * @param options.showControlsAlways: {boolean} - Check if you want to show controls always
+   */
   constructor(sliderContainer, slideData, createElementCallback, options = {}) {
     if (!Array.isArray(slideData) || !sliderContainer instanceof HTMLElement) {
       throw new TypeError();
