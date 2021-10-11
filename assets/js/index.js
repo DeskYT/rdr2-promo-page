@@ -30,6 +30,27 @@ const reviews = [
   }
 ];
 
+const setTheme = (isDarkMode) => {
+  localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+  document.body.classList.remove('dark', 'light');
+  document.body.classList.add(isDarkMode ? 'dark' : 'light');
+}
+
+const initThemeChanger = () => {
+  const themeSwitcherCheckbox = document.getElementById('theme-switcher-checkbox');
+  if (localStorage.getItem('isDarkMode') === null) {
+    setTheme(true);
+  }
+  const isDarkMode = JSON.parse(localStorage.getItem('isDarkMode'));
+  themeSwitcherCheckbox.checked = isDarkMode;
+  document.body.classList.add(isDarkMode ? 'dark' : 'light');
+  themeSwitcherCheckbox.addEventListener("change", (e) => {
+    setTheme(e.currentTarget.checked);
+  })
+}
+
+initThemeChanger()
+
 const reviewSegments = [];
 
 reviews.forEach((item, index) => {
@@ -126,24 +147,3 @@ const reviewsSlider = new Slider(reviewsSliderContainer, reviewSegments, createR
   customControls: createReviewControls(),
   showControlsAlways: true,
 });
-
-const setTheme = (isDarkMode) => {
-  localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
-  document.body.classList.remove('dark', 'light');
-  document.body.classList.add(isDarkMode ? 'dark' : 'light');
-}
-
-const initThemeChanger = () => {
-  const themeSwitcherCheckbox = document.getElementById('theme-switcher-checkbox');
-  if (localStorage.getItem('isDarkMode') === null) {
-    setTheme(true);
-  }
-  const isDarkMode = JSON.parse(localStorage.getItem('isDarkMode'));
-  themeSwitcherCheckbox.checked = isDarkMode;
-  document.body.classList.add(isDarkMode ? 'dark' : 'light');
-  themeSwitcherCheckbox.addEventListener("change", (e) => {
-    setTheme(e.currentTarget.checked);
-  })
-}
-
-initThemeChanger()
